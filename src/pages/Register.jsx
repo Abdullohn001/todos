@@ -38,7 +38,7 @@ function Register() {
   }, [userData]);
 
   return (
-    <div className="auth-container">
+    <div className="auth-bg-register">
       <div className="auth-bg-register auth-right">
         <Form
           method="post"

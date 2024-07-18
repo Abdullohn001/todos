@@ -4,10 +4,10 @@
 
 @layer components {
   .auth-bg-register {
-    @apply bg-[url('./src/assets/login-img.jpg')] bg-no-repeat bg-cover bg-center;
+    @apply bg-base-200 bg-no-repeat bg-cover bg-center;
   }
   .auth-bg-login {
-    @apply bg-[url('./src/assets/login-img-lg.png')] bg-no-repeat bg-cover bg-center;
+    @apply bg-base-200 bg-no-repeat bg-cover bg-center;
   }
 
   .auth-container {

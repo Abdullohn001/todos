@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .auth-bg-register {
+    @apply bg-[url('./src/assets/login-img.jpg')] bg-no-repeat bg-cover bg-center;
+  }
+  .auth-bg-login {
+    @apply bg-[url('./src/assets/login-img-lg.png')] bg-no-repeat bg-cover bg-center;
+  }
+
+  .auth-container {
+    @apply grid grid-cols-1 min-h-screen w-full;
+  }
+
+  .auth-right {
+    @apply grid place-items-center;
+  }
+}

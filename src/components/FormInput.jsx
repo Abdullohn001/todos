@@ -4,10 +4,8 @@ function FormInput({ label, type, name, placeholder, error }) {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <label className="form-control w-full">
-      <div className="label">
-        <span className="label-text capitalize font-semibold">{label} </span>
-      </div>
+    <label className="form-control">
+      
       <input
         // required
         type={type}

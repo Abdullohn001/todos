@@ -7,7 +7,7 @@ function ErrorPage() {
     return (
       <div className="text-centar pt-10 h-lvh">
         <h1 className="text-center mb-5 text-3xl font-bold">
-          👇PageNotFound👇
+          PageNotFound
         </h1>
         <p className="mb-5 text-center text-xl">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias

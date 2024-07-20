@@ -22,7 +22,7 @@ import { auth } from "../firebase/firebaseConfig";
 import toast from "react-hot-toast";
 
 function Login() {
-  const farxod = useActionData();
+  const axius = useActionData();
   const { isPanding, registerWithGoogle } = useRegister();
   const { isPanding: isPandingLogin, signIn } = useLogin();
   const [showPassword, setShowPassword] = useState(true);
@@ -34,21 +34,21 @@ function Login() {
   const [errorPassword, setErrorPassword] = useState(false);
 
   useEffect(() => {
-    if (farxod) {
-      if (farxod.email && farxod.password && showPassword) {
-        signIn(farxod.email, farxod.password);
+    if (axius) {
+      if (axius.email && axius.password && showPassword) {
+        signIn(axius.email, axius.password);
       }
-      if (!showPassword && farxod?.email) {
-        sendPasswordResetEmail(auth, farxod.email)
+      if (!showPassword && axius?.email) {
+        sendPasswordResetEmail(auth, axius.email)
           .then(() => {
-            toast.success(`The Link was Send to this ${farxod.email}`);
+            toast.success(`The Link was Send to this ${axius.email}`);
             setShowPassword(true);
           })
           .catch((error) => {
             toast.error("The Link was can not sent :( ");
           });
       }
-      if (!farxod.email) {
+      if (!axius.email) {
         setErrorStatus((prev) => {
           return { ...prev, email: "input-error border-[2px]" };
         });
@@ -60,7 +60,7 @@ function Login() {
         });
         setErrorEmail(false);
       }
-      if (!farxod.password) {
+      if (!axius.password) {
         setErrorStatus((prev) => {
           return { ...prev, password: "input-error border-[2px]" };
         });
@@ -73,17 +73,16 @@ function Login() {
         setErrorPassword(false);
       }
     }
-  }, [farxod]);
+  }, [axius]);
 
   return (
-    <div className="auth-container">
-      <div className="auth-bg-login auth-right">
+    <div className="auth-bg">
+      <div className="auth-container auth-right">
         <Form
-          // onSubmit={() => handleSubmit(input)}
           method="post"
-          className="flex flex-col gap-2 w-[340px] shadow-2xl p-7 rounded-xl  bg-[rgba(255,255,255,0.6)]"
+          className="flex flex-col gap-3 w-[340px] shadow-2xl p-7 rounded-xl  bg-[rgba(255,255,255,0.6)]"
         >
-          <h1 className="text-4xl font-semibold text-center">
+          <h1 className="text-4xl font-semibold text-black text-center">
             {showPassword ? "Login" : "Reset Password"}{" "}
           </h1>
           <FormInput

@@ -38,13 +38,15 @@ function Register() {
   }, [userData]);
 
   return (
-    <div className="auth-bg-register">
-      <div className="auth-bg-register auth-right">
+    <div className="auth-bg">
+      <div className="auth-container auth-right">
         <Form
           method="post"
-          className="flex flex-col w-[340px] shadow-2xl p-7 rounded-xl bg-[rgba(255,255,255,0.75)]"
+          className="flex flex-col w-[340px] gap-3 shadow-2xl p-7 rounded-xl bg-[rgba(255,255,255,0.6)]"
         >
-          <h1 className="text-4xl font-semibold text-center">Register</h1>
+          <h1 className="text-4xl font-semibold text-black text-center">
+            Register
+          </h1>
           <FormInput
             label="Your Name :"
             type="text"
@@ -77,11 +79,12 @@ function Register() {
           />
           <div className="mt-6">
             {isPanding && (
-              <button
-                disabled
-                className="btn btn-info  border-red-400 btn-block font-bold"
-              >
-                Loading...
+              <button type="button" class="bg-indigo-500 ..." disabled>
+                <svg
+                  class="animate-spin btn btn-info "
+                  viewBox="0 0 24 24"
+                ></svg>
+                Processing...
               </button>
             )}
             {!isPanding && (

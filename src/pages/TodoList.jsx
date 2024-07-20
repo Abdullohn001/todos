@@ -7,13 +7,14 @@ import { useCollection } from "../hooks/useCollection";
 import { FormInput } from "../components";
 import { useEffect } from "react";
 //firebase
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
   serverTimestamp,
-  updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import toast from "react-hot-toast";
@@ -42,25 +43,17 @@ function TodoList() {
   const handleDelete = (id) => {
     deleteDoc(doc(db, "todos", id))
       .then(() => {
-        toast.success("Deleted todo.");
+        toast.success("Deleted message.");
       })
       .catch((error) => {
         toast.error(error.message);
       });
   };
 
-  const handleCompleted = (id, status) => {
-    const todoRef = doc(db, "todos", id);
 
-    updateDoc(todoRef, {
-      completed: !status,
-    })
-      .then(() => {
-        toast.success("Updated !");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+  const signOutProfile = async () => {
+    await signOut(auth);
+    toast.success("See you Soon!");
   };
 
   useEffect(() => {
@@ -74,7 +67,7 @@ function TodoList() {
 
       addDoc(collection(db, "todos"), newTodo)
         .then(() => {
-          toast.success("New todo added!");
+          toast.success("New massage added!");
         })
         .catch((error) => {
           toast.error(error.message);
@@ -83,47 +76,106 @@ function TodoList() {
   }, [dataTodo]);
 
   return (
-    <div className="container mx-auto min-h-[600px]  rounded-xl p-5">
+    <div className="">
       {data &&
         data.map((todo) => {
           return (
-            <div key={todo.id} className="flex flex-col w-full">
-              <div
-                className={`${
-                  todo.completed ? "opacity-35 line-through" : "opacity-100"
-                }`}
-              >
-                <h2 className="text-3xl text-center font-serif font-medium">
-                  {todo.title}
-                </h2>
+            <div key={todo.id} className=" rounded-lg gap-10 mt-[50px] ">
+              <div className="chat chat-start w-full">
+                <div className="chat-image avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS chat bubble component"
+                      src={user.photoURL}
+                    />
+                  </div>
+                </div>
+                <div className="chat-header">
+                  <h5>{user.displayName}</h5>
+                  <time className="text-xs opacity-50">
+                    <h4>{todo.serverTimestamp}</h4>
+                  </time>
+                </div>
+                <div className="chat-bubble">
+                  <h2>{todo.title}</h2>
+                </div>
               </div>
-              <div className="flex justify-center gap-4">
-                <button
-                  onClick={() => handleCompleted(todo.id, todo.completed)}
-                  className="btn mt-7 btn-success px-14 my-5"
-                >
-                  Completed
-                </button>
-                <button
-                  onClick={() => handleDelete(todo.id)}
-                  className="btn btn-success px-14 my-5"
-                >
-                  Delete
-                </button>
+              <div className="chat chat-end w-full">
+                <div className="chat-image avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS chat bubble component"
+                      src={user.photoURL}
+                    />
+                  </div>
+                </div>
+                <div className="chat-header">
+                  <h5>{user.displayName}</h5>
+                  <time className="text-xs opacity-50">
+                    <h4>{todo.serverTimestamp}</h4>
+                  </time>
+                </div>
+                <div className="chat-bubble">
+                  <h2>{todo.title}</h2>
+                </div>
               </div>
+
+              {/* <div className="">
+                <div className="hover:contrast-50 rounded-lg shadow-xl ">
+                  <h2 className="text-3xl rounded-lg bg-base-100 text-center p-3 font-serif">
+                    {todo.title}
+                  </h2>
+                </div>
+              </div> */}
             </div>
           );
         })}
 
-      <div>
-        <Form method="post">
+      <div className="flex justify-center mt-[20px]">
+        <div className="flex pr-5 w-20 lg:flex-col items-center">
+          <div className="dropdown dropdown-top">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-20 rounded-full">
+                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-60 p-2 shadow"
+            >
+              <li>
+                <small className="text-[10px] pb-0">email:</small>
+                <p className="justify-between font-medium pt-0">{user.email}</p>
+              </li>
+              <li>
+                <small className="text-[10px] pb-0">full name :</small>
+                <p className="capitalize font-semibold font-serif mb-3">
+                  {user.displayName}{" "}
+                </p>
+              </li>
+              <li>
+                <button
+                  onClick={signOutProfile}
+                  className=" font-serif text-lg bg-red-300 font-semibold"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Form className="flex " method="post">
           <FormInput
             name="title"
-            label="Title :"
+            className="w-[1200px]"
             type="text"
-            placeholder="Creat new Todo"
+            placeholder="Write something"
           />
-          <button className="btn btn-info btn-block">Add</button>
+          <button className="btn w-[] rounded-r-lg btn-info ">Add</button>
         </Form>
       </div>
     </div>

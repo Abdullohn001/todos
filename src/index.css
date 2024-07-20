@@ -3,15 +3,11 @@
 @tailwind utilities;
 
 @layer components {
-  .auth-bg-register {
-    @apply bg-base-200 bg-no-repeat bg-cover bg-center;
+  .auth-bg {
+    @apply bg-[url('assets/photo_2024.jpg')] bg-no-repeat bg-cover bg-center;
   }
-  .auth-bg-login {
-    @apply bg-base-200 bg-no-repeat bg-cover bg-center;
-  }
-
   .auth-container {
-    @apply grid grid-cols-1 min-h-screen w-full;
+    @apply grid grid-cols-1 min-h-screen;
   }
 
   .auth-right {

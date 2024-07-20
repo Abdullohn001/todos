@@ -8,23 +8,16 @@ import {
 import MainLayout from "./layout/MainLayout";
 //Pages
 import {
-  Home,
-  About,
-  Contact,
   Login,
   Register,
   ErrorPage,
-  SingleProduct,
-  Cart,
   TodoList,
 } from "./pages";
 //actions
 import { action as RegisterAction } from "./pages/Register";
 import { action as LoginAction } from "./pages/Login";
 import { action as TodosAction } from "./pages/TodoList";
-//Loaders
-import { loader as HomeLoader } from "./pages/Home";
-import { loader as SingleProductLoader } from "./pages/SingleProduct";
+
 //components
 import ProtectedRoutes from "./components/ProtectedRoutes";
 

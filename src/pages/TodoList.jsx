@@ -4,7 +4,6 @@ import { Form, useActionData } from "react-router-dom";
 //custom hooks
 import { useCollection } from "../hooks/useCollection";
 //components
-import { FormInput } from "../components";
 import { useEffect } from "react";
 //firebase
 import { signOut } from "firebase/auth";
@@ -49,7 +48,6 @@ function TodoList() {
         toast.error(error.message);
       });
   };
-
 
   const signOutProfile = async () => {
     await signOut(auth);
@@ -110,10 +108,8 @@ function TodoList() {
                   </div>
                 </div>
                 <div className="chat-header">
-                  <h5>{user.displayName}</h5>
-                  <time className="text-xs opacity-50">
-                    <h4>{todo.serverTimestamp}</h4>
-                  </time>
+                  <h6>{user.displayName}</h6>
+                  <time className="text-xs opacity-50"></time>
                 </div>
                 <div className="chat-bubble">
                   <h2>{todo.title}</h2>
@@ -169,13 +165,13 @@ function TodoList() {
           </div>
         </div>
         <Form className="flex " method="post">
-          <FormInput
+          <input
             name="title"
-            className="w-[1200px]"
             type="text"
-            placeholder="Write something"
+            placeholder="Write something for Abdulloh"
+            className="input input-bordered focus:bg-inherit w-[500px]"
           />
-          <button className="btn w-[] rounded-r-lg btn-info ">Add</button>
+          <button className="btn btn-info ">Add</button>
         </Form>
       </div>
     </div>

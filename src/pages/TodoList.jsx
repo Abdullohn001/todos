@@ -51,11 +51,10 @@ function TodoList() {
   };
 
 
-   const signOutProfile = async () => {
-     await signOut(auth);
-     toast.success("See you Soon!");
-   };
-
+  const signOutProfile = async () => {
+    await signOut(auth);
+    toast.success("See you Soon!");
+  };
 
   useEffect(() => {
     if (dataTodo) {
@@ -81,8 +80,27 @@ function TodoList() {
       {data &&
         data.map((todo) => {
           return (
-            <div key={todo.id} className="flex rounded-lg gap-10 mt-[50px] ">
-              <div className="chat chat-start">
+            <div key={todo.id} className=" rounded-lg gap-10 mt-[50px] ">
+              <div className="chat chat-start w-full">
+                <div className="chat-image avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS chat bubble component"
+                      src={user.photoURL}
+                    />
+                  </div>
+                </div>
+                <div className="chat-header">
+                  <h5>{user.displayName}</h5>
+                  <time className="text-xs opacity-50">
+                    <h4>{todo.serverTimestamp}</h4>
+                  </time>
+                </div>
+                <div className="chat-bubble">
+                  <h2>{todo.title}</h2>
+                </div>
+              </div>
+              <div className="chat chat-end w-full">
                 <div className="chat-image avatar">
                   <div className="w-10 rounded-full">
                     <img
@@ -113,9 +131,9 @@ function TodoList() {
           );
         })}
 
-      <div className="flex mt-[20px]">
+      <div className="flex justify-center mt-[20px]">
         <div className="flex pr-5 w-20 lg:flex-col items-center">
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-top">
             <div
               tabIndex={0}
               role="button"
@@ -151,7 +169,12 @@ function TodoList() {
           </div>
         </div>
         <Form className="flex " method="post">
-          <FormInput name="title" className="w-[1200px]" type="text" placeholder="Write something" />
+          <FormInput
+            name="title"
+            className="w-[1200px]"
+            type="text"
+            placeholder="Write something"
+          />
           <button className="btn w-[] rounded-r-lg btn-info ">Add</button>
         </Form>
       </div>

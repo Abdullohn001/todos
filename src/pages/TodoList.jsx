@@ -169,7 +169,7 @@ function TodoList() {
             name="title"
             type="text"
             placeholder="Write something for Abdulloh"
-            className="input input-bordered focus:bg-inherit w-[500px]"
+            className="input input-bordered focus:bg-inherit md:w-[500px]"
           />
           <button className="btn btn-info ">Add</button>
         </Form>

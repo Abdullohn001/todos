@@ -80,7 +80,7 @@ function Login() {
       <div className="auth-container auth-right">
         <Form
           method="post"
-          className="flex flex-col gap-3 w-[340px] shadow-2xl p-7 rounded-xl  bg-[rgba(255,255,255,0.6)]"
+          className="flex flex-col gap-3 w-[340px] shadow-2xl backdrop-blur-xl p-7 rounded-xl"
         >
           <h1 className="text-4xl font-semibold text-black text-center">
             {showPassword ? "Login" : "Reset Password"}{" "}

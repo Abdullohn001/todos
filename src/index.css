@@ -4,10 +4,13 @@
 
 @layer components {
   .auth-bg {
-    @apply bg-[url('assets/photo_2024.jpg')] bg-no-repeat bg-cover bg-center;
+    @apply bg-[url('assets/bg-for-login.jpg')] bg-no-repeat bg-cover bg-center;
   }
   .auth-container {
     @apply grid grid-cols-1 min-h-screen;
+  }
+  .chat-bg{
+    @apply bg-[url('./assets/cosmos-bg.jpg')] backdrop-blur-sm bg-no-repeat bg-cover bg-center;
   }
 
   .auth-right {

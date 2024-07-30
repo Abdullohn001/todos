@@ -33,7 +33,6 @@ function TodoList() {
 
   const { data } = useCollection(
     "todos",
-    ["uid", "==", user.uid],
     ["createdAt"]
   );
 
